@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SANAD KHALED BC</title>
+    <style>
+        /* تنسيق عام للصفحة */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            background: linear-gradient(90deg, #6a11cb 33%, #2575fc 66%, #00d4ff 100%);
+            position: relative;
+        }
+
+        /* تصميم البطاقة الشخصية */
+        .card-container {
+            position: relative;
+            width: 90%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: row-reverse; /* لجعل الأزرار على اليمين */
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .card-content {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        /* خلفية البطاقة الشخصية (صورة) */
+        .card-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .card-content h1 {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+
+        .card-content p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* تصميم الأزرار */
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-left: 1px solid #ddd;
+        }
+
+        .button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            border-radius: 8px;
+            text-align: center;
+            transition: background-color 0.3s;
+            font-size: 14px;
+            width: 100px;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        /* زر الاتصال */
+        .call-button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            border-radius: 8px;
+            text-align: center;
+            transition: background-color 0.3s;
+            font-size: 14px;
+            width: 100px;
+        }
+
+        .call-button:hover {
+            background-color: #218838;
+        }
+
+        /* تصميم خانة إرسال الرسالة */
+        .message-box {
+            margin-top: 20px;
+        }
+
+        .message-box textarea {
+            width: 100%;
+            height: 80px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            resize: none;
+            font-size: 14px;
+        }
+
+        .message-box button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 16px;
+        }
+
+        .message-box button:hover {
+            background-color: #218838;
+        }
+
+        /* استجابة الصفحة للأجهزة المختلفة */
+        @media (max-width: 600px) {
+            .card-container {
+                flex-direction: column;
+            }
+
+            .buttons {
+                flex-direction: row;
+                gap: 10px;
+                padding: 10px;
+                border-left: none;
+                border-top: 1px solid #ddd;
+            }
+
+            .button, .call-button {
+                width: auto;
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+
+            .message-box textarea {
+                height: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- البطاقة الشخصية -->
+    <div class="card-container">
+        <!-- محتوى البطاقة -->
+        <div class="card-content">
+            <img src="profile.jpg" alt="صورة الخلفية" class="card-background">
+            <h1>ENG. Sanad Khaled</h1>
+            <p>Founder & GM of SURAXY</p>
+
+            <!-- خانة إرسال الرسالة -->
+            <div class="message-box">
+                <textarea id="message" placeholder="اكتب رسالتك هنا..."></textarea>
+                <button onclick="sendMessage()">إرسال</button>
+            </div>
+        </div>
+
+        <!-- الأزرار على اليمين -->
+        <div class="buttons">
+            <a href="https://facebook.com" target="_blank" class="button">فيسبوك</a>
+            <a href="https://twitter.com" target="_blank" class="button">تويتر</a>
+            <a href="https://instagram.com" target="_blank" class="button">إنستغرام</a>
+            <a href="https://linkedin.com" target="_blank" class="button">لينكدإن</a>
+            <a href="https://youtube.com" target="_blank" class="button">يوتيوب</a>
+            <a href="tel:00962799880070" class="call-button">CALL ME</a>
+        </div>
+    </div>
+
+    <script>
+        // إعداد بيانات الإرسال
+        const smsNumber = "00962799880070"; // رقم الهاتف لـ SMS
+        const email = "sanad.gm@suraxy.com"; // البريد الإلكتروني
+
+        function sendMessage() {
+            const message = document.getElementById("message").value;
+
+            if (!message) {
+                alert("يرجى كتابة رسالة قبل الإرسال.");
+                return;
+            }
+
+            // إنشاء رابط لإرسال الرسالة عبر SMS أو البريد الإلكتروني
+            const smsLink = `sms:${smsNumber}?body=${encodeURIComponent(message)}&sender=YourName`;
+            const emailLink = `mailto:${email}?subject=رسالة من صفحتك الشخصية&body=${encodeURIComponent(message)}`;
+
+            // اختيار الطريقة (SMS أو البريد الإلكتروني)
+            const useSMS = confirm("هل تريد إرسال الرسالة عبر SMS؟\nإذا اخترت 'لا'، سيتم إرسالها عبر البريد الإلكتروني.");
+
+            if (useSMS) {
+                window.location.href = smsLink;
+            } else {
+                window.location.href = emailLink;
+            }
+        }
+    </script>
+</body>
+</html>
