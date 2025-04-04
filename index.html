@@ -104,39 +104,6 @@
             background-color: #218838;
         }
 
-        /* تصميم خانة إرسال الرسالة */
-        .message-box {
-            margin-top: 20px;
-        }
-
-        .message-box textarea {
-            width: 100%;
-            height: 80px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            resize: none;
-            font-size: 14px;
-        }
-
-        .message-box button {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            margin-top: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            font-size: 16px;
-        }
-
-        .message-box button:hover {
-            background-color: #218838;
-        }
-
         /* استجابة الصفحة للأجهزة المختلفة */
         @media (max-width: 600px) {
             .card-container {
@@ -156,10 +123,6 @@
                 padding: 8px 12px;
                 font-size: 12px;
             }
-
-            .message-box textarea {
-                height: 60px;
-            }
         }
     </style>
 </head>
@@ -168,15 +131,13 @@
     <div class="card-container">
         <!-- محتوى البطاقة -->
         <div class="card-content">
-            <img src="profile.jpg" alt="صورة الخلفية" class="card-background">
-            <h1>ENG. Sanad Khaled</h1>
+            <!-- خلفية البطاقة الشخصية (يمكنك تغيير الرابط هنا مباشرة) -->
+            <img src="https://img.freepik.com/free-photo/grunge-wall-background-texture_1194-603393.jpg?t=st=1743754401~exp=1743758001~hmac=98af7112660238c6e850ac499d36593ec8a600224aa78dda9be16bda1155beea&w=1380" alt="صورة الخلفية" class="card-background">
+            <h3>ENG. Sanad Khaled</h3>
             <p>Founder & GM of SURAXY</p>
-
-            <!-- خانة إرسال الرسالة -->
-            <div class="message-box">
-                <textarea id="message" placeholder="اكتب رسالتك هنا..."></textarea>
-                <button onclick="sendMessage()">إرسال</button>
-            </div>
+            <p>Email: sanad.gm@suraxy.com</p>
+            <p>Mobile: 00962 799 8800 70</p>
+            <p>Website: www.SURAXY.com</p>
         </div>
 
         <!-- الأزرار على اليمين -->
@@ -185,37 +146,8 @@
             <a href="https://twitter.com" target="_blank" class="button">تويتر</a>
             <a href="https://instagram.com" target="_blank" class="button">إنستغرام</a>
             <a href="https://linkedin.com" target="_blank" class="button">لينكدإن</a>
-            <a href="https://youtube.com" target="_blank" class="button">يوتيوب</a>
-            <a href="tel:00962799880070" class="call-button">CALL ME</a>
+            <a href="tel:123456789" class="call-button">CALL ME</a>
         </div>
     </div>
-
-    <script>
-        // إعداد بيانات الإرسال
-        const smsNumber = "00962799880070"; // رقم الهاتف لـ SMS
-        const email = "sanad.gm@suraxy.com"; // البريد الإلكتروني
-
-        function sendMessage() {
-            const message = document.getElementById("message").value;
-
-            if (!message) {
-                alert("يرجى كتابة رسالة قبل الإرسال.");
-                return;
-            }
-
-            // إنشاء رابط لإرسال الرسالة عبر SMS أو البريد الإلكتروني
-            const smsLink = `sms:${smsNumber}?body=${encodeURIComponent(message)}&sender=YourName`;
-            const emailLink = `mailto:${email}?subject=رسالة من صفحتك الشخصية&body=${encodeURIComponent(message)}`;
-
-            // اختيار الطريقة (SMS أو البريد الإلكتروني)
-            const useSMS = confirm("هل تريد إرسال الرسالة عبر SMS؟\nإذا اخترت 'لا'، سيتم إرسالها عبر البريد الإلكتروني.");
-
-            if (useSMS) {
-                window.location.href = smsLink;
-            } else {
-                window.location.href = emailLink;
-            }
-        }
-    </script>
 </body>
 </html>
